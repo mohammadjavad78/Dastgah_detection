@@ -7,10 +7,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class KNN:
-    def __init__(self,X,Y,testsize):
+    def __init__(self,X,Y,testsize=1/3,inp=True,X_train="None",X_test="None",y_train="None",y_test="None"):
         self.X=X
         self.Y=Y
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X,Y, test_size=testsize, random_state=0, stratify=Y)
+        if(inp):
+            self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X,Y, test_size=testsize, random_state=0, stratify=Y)
+        else:
+            self.X_train=X_train
+            self.X_test=X_test
+            self.y_train=y_train
+            self.y_test=y_test
+
 
     def change(self,X_train,X_test,y_train,y_test):
         self.X_train=X_train
@@ -40,7 +47,6 @@ class KNN:
 
     def plot(self,K):
         scaler = preprocessing.StandardScaler()
-        X_sclr = scaler.fit_transform(self.X)
         X_train = scaler.fit_transform(self.X_train)
         X_test = scaler.transform(self.X_test)
         acc = []
