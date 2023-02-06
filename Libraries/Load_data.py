@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 import pandas as pd
 
-def loaddata(adr1='./drive/MyDrive/X.pickle',adr2='./drive/MyDrive/label1.pickle',adr3='./drive/MyDrive/label2.pickle',allinone_or_splited=True):
+def loaddata(adr1='../Datas/X.pickle',adr2='../Datas/label1.pickle',adr3='../Datas/label2.pickle',allinone_or_splited=True):
     with open(adr1, 'rb') as f: #loads the file from hard disk
         X = pickle.load(f)
         
