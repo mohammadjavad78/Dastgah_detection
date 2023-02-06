@@ -13,7 +13,8 @@ class lda:
     def __init__(self,X,Y,n=-1):
         self.X=X
         self.Y=Y
-        self.X = StandardScaler().fit_transform(self.X)
+        self.sc=StandardScaler()
+        self.X = self.sc.fit_transform(self.X)
         if(n==-1):
             n=len(self.Y.value_counts())-1
         self.lda = LDA(n_components=n)
@@ -25,5 +26,6 @@ class lda:
         return self.X,self.Y
 
     def LDA_changeX(self,X_test):
+        X_test = self.sc.transform(X_test)
         X_test = self.lda.transform(X_test)
         return X_test

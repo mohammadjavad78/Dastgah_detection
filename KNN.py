@@ -12,6 +12,15 @@ class KNN:
         self.Y=Y
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X,Y, test_size=testsize, random_state=0, stratify=Y)
 
+    def change(self,X_train,X_test,y_train,y_test):
+        self.X_train=X_train
+        self.X_test=X_test
+        self.y_train=y_train
+        self.y_test=y_test
+
+    def get(self):
+        return self.X_train,self.X_test,self.y_train,self.y_test
+
     def accurate(self,K):
         scaler = preprocessing.StandardScaler()
         X_sclr = scaler.fit_transform(self.X)
@@ -25,6 +34,7 @@ class KNN:
         cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = cm)
         cm_display.plot()
         plt.show()
+        return yhat
 
 
 
