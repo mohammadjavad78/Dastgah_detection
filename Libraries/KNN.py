@@ -28,7 +28,7 @@ class KNN:
     def get(self):
         return self.X_train,self.X_test,self.y_train,self.y_test
 
-    def accurate(self,K):
+    def accurate(self,K=1):
         scaler = preprocessing.StandardScaler()
         X_sclr = scaler.fit_transform(self.X)
         X_train = scaler.fit_transform(self.X_train)
