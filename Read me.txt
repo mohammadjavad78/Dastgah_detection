@@ -1,0 +1,4 @@
+At the first time you should add musics to our drive by right click on ML_prj_2023 floder,
+add shortcut to drive, and then press my drive and add shortcut
+then you have to mount your colab to google drive by files(from left side of colab)
+then click on mount drive

@@ -1,31 +1,21 @@
-import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
-from sklearn.preprocessing import StandardScaler
-
+import pandas as pd
 
 
 
 class lda:
     def __init__(self,X,Y,n=-1):
-        self.X=X
-        self.Y=Y
-        self.sc=StandardScaler()
-        self.X = self.sc.fit_transform(self.X)
+        self.X=pd.DataFrame(X)
+        self.Y=pd.DataFrame(Y)
         if(n==-1):
-            n=len(self.Y.value_counts())-1
-        self.lda = LDA(n_components=n)
+            self.n=len(self.Y.value_counts())-1
+        self.lda = LDA(n_components=self.n)
 
-    def LDAout(self,n=-1):
-        if(n!=-1):
-            self.lda = LDA(n_components=n)
-        self.X = self.lda.fit_transform(self.X, self.Y)
-        return self.X,self.Y
+    def LDAout(self):
+        X = pd.DataFrame(self.lda.fit_transform(self.X, self.Y.values.ravel()),columns=[f"feature{i}" for i in range(self.n)])
+        return X
 
     def LDA_changeX(self,X_test):
-        X_test = self.sc.transform(X_test)
-        X_test = self.lda.transform(X_test)
+        X_test = pd.DataFrame(self.lda.transform(X_test),columns=[f"feature{i}" for i in range(self.n)])
         return X_test
